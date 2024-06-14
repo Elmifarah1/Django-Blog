@@ -13,8 +13,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
-if os.path.isfile('env.py'):
-    import env
+
+if os.path.isfile('envy.py'):
+    import envy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,10 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("Do8coNFhRv")
+SECRET_KEY = os.environ.get('Do8coNFhRv')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 
 ALLOWED_HOSTS = ['8000-elmifarah1-djangoblog-22wcpdc4lip.ws-eu114.gitpod.io', '.herokuapp.com']
 
@@ -78,17 +79,14 @@ WSGI_APPLICATION = 'codestar.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASE_URL = os.environ.get('postgres://ux4dxh850oq:zN0rs3TQ9BIo@ep-gentle-mountain-a23bxz6h.eu-central-1.aws.neon.tech/rise_enter_scare_780685')
 
-DATABASES = {
-    'default': dj_database_url.parse(os.environ.get("postgres://ux4dxh850oq:zN0rs3TQ9BIo@ep-gentle-mountain-a23bxz6h.eu-central-1.aws.neon.tech/rise_enter_scare_780685"))
-}
-
+if DATABASE_URL:
+    DATABASES = {
+        'default': dj_database_url.parse(DATABASE_URL)
+    }
+else:
+    raise ValueError("DATABASE_URL environment variable not set.")
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
