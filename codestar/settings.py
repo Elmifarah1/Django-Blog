@@ -29,9 +29,8 @@ SECRET_KEY = ('Do8coNFhRv')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    "8000-elmifarah1-djangoblog-22wcpdc4lip.ws-eu114.gitpod.io', '.herokuapp.com"
-]
+ALLOWED_HOSTS = ['8000-elmifarah1-djangoblog-22wcpdc4lip.ws-eu114.gitpod.io', '.herokuapp.com'
+] 
 
 
 # Application definition
