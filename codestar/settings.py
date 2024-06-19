@@ -34,7 +34,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'your-default-secret-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['8000-elmifarah1-djangoblog-22wcpdc4lip.ws-eu114.gitpod.io','.herokuapp.com' ]
+ALLOWED_HOSTS = ['8000-elmifarah1-djangoblog-22wcpdc4lip.ws-eu114.gitpod.io',
+                '.herokuapp.com' ]
 
 
 # Application definition
@@ -92,13 +93,6 @@ if DATABASE_URL:
 else:
     raise ValueError("DATABASE_URL environment variable not set.")
 
-
-CSRF_TRUSTED_ORIGINS = [
-    'http://8000-elmifarah1-djangoblog-22wcpdc4lip.ws-eu114.gitpod.io',
-    'https://your-heroku-app.herokuapp.com',  # Add your Heroku app URL with scheme
-]
-
-
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -144,3 +138,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Summernote settings (optional, adjust as needed)
 SUMMERNOTE_THEME = 'bs4'  # Set Summernote theme (e.g., 'bs4', 'simple', 'dark')
 
+CSRF_TRUSTED_ORIGINS = [
+    'http://8000-elmifarah1-djangoblog-22wcpdc4lip.ws-eu114.gitpod.io',
+    'https://*.herokuapp.com',
+]
